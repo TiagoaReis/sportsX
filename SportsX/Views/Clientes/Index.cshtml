@@ -1,0 +1,107 @@
+﻿@model IEnumerable<SportsX.Models.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Clientes</h2>
+<p>
+    <div class="row">
+        <a href="@Url.Action("Create", "Clientes")" class="btn btn-success mr-5" role="button" aria-pressed="true">Novo Cliente</a>
+        <!-- Topbar Search -->
+        @using (Html.BeginForm("Index", "Clientes", FormMethod.Get))
+        {
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-5 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" name="Pesquisa" id="Pesquisa" class="form-control bg-gray-200 border-0 small" placeholder="Digite o nome..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" value="Pesquisar">
+                            <i class="fas fa-search fa-sm"></i> Pesquisar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }@*@Html.TextBox("Pesquisa", new { htmlAttributes = new { @class = "form-control bg-gray-200 border-0 small" } })*@
+
+    </div>
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClienteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Razao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cnpj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelFixo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Classificacao)
+        </th>
+        <th>Ação</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Razao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cnpj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelFixo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cep)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classificacao)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Clientes", new { id = item.ClienteID })" class="btn btn-info " role="button" aria-pressed="true">Editar</a>
+                <a href="@Url.Action("Details", "Clientes", new { id = item.ClienteID })" class="btn btn-warning " role="button" aria-pressed="true">Detalhes</a>
+                <a href="@Url.Action("Delete", "Clientes", new { id = item.ClienteID })" class="btn btn-danger " role="button" aria-pressed="true">Excluir</a>
+            </td>
+        </tr>
+
+    }
+</table>
+@section scripts {  
+
+    <script>
+        $(document).ready(function () {
+            $('#Pesquisa').focus();   
+        });
+    </script>    
+}

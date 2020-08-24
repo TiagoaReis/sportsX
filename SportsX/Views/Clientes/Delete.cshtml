@@ -1,0 +1,70 @@
+﻿@model SportsX.Models.Cliente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>Confirma a exclusão deste cliente?</h3>
+<div>
+    <h4>Código Cliente: @Html.DisplayFor(model => model.ClienteID)</h4>    
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Razao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Razao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Classificacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Classificacao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </p>               
+    }
+</div>

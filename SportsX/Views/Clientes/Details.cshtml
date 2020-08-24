@@ -1,0 +1,74 @@
+﻿@model SportsX.Models.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Cadastro Cliente</h2>
+
+<div>
+    <h4>Código Cliente: @Html.DisplayFor(model => model.ClienteID)</h4>    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Razao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Razao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelFixo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelFixo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Classificacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Classificacao)
+        </dd>
+
+    </dl>
+</div>
+<p>    
+    <div>
+        <a href="@Url.Action("Edit", "Clientes", new { id = Model.ClienteID })" class="btn btn-info " role="button" aria-pressed="true">Editar</a>
+    </div>
+</p>

@@ -1,0 +1,127 @@
+﻿@model SportsX.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Cadastro de Cliente</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Preencha os campos abaixo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.Tipo, htmlAttributes: new { @class = "form-control", onchange = "Teste()" , id = "Tipo"})
+                    @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6 ">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", maxlength = "100", placeholder = "Digite o nome...", id = "Nome"} })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.Razao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="">
+                @Html.EditorFor(model => model.Razao, new { htmlAttributes = new { @class = "form-control", maxlength = "100", placeholder = "Digite a razão social..." } })
+                @Html.ValidationMessageFor(model => model.Razao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Cnpj, "CNPJ", htmlAttributes: new { @class = "control-label col-md-2", id = "lbCNPJ" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Cnpj, new { htmlAttributes = new { @class = "form-control", id = "CNPJ", maxlength = "18", placeholder = "00.000.000/0000-00" } })
+                    @Html.ValidationMessageFor(model => model.Cnpj, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.TelFixo, "Telefone", htmlAttributes: new { @class = "control-label col-md-2", id = "Tel" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TelFixo, new { htmlAttributes = new { @class = "form-control", id = "TelFixo", placeholder = "Digite os numeros" } })
+                    @Html.ValidationMessageFor(model => model.TelFixo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Ex: cliente@hotmail.com" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Classificacao, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.Classificacao, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Classificacao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control", placeholder = "Ex: Rua Perimetral, 236, centro" } })
+                    @Html.ValidationMessageFor(model => model.Endereco, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @class = "form-control", placeholder = "00000-000", id = "CEP" } })
+                    @Html.ValidationMessageFor(model => model.Cep, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group pull-right">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cadastrar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/inputmask")
+
+    <script>
+        $(document).ready(function () {            
+            $('#Tipo').val(-1)                  
+            $('#CNPJ').mask('00.000.000/0000-00', { reverse: true });
+            $('#CEP').mask('00000-000', { reverse: true });
+            $('#TelFixo').mask('(00) 0000-0000');
+        });
+    </script>
+    <script>
+        function Teste() {
+            var tipo = $('#Tipo').val()
+            if (tipo == 0) {
+                $('#lbCNPJ').text('CPF');
+                $('#CNPJ').mask('000.000.000-00', { reverse: true });
+                $('#CNPJ').attr('placeholder', '000.000.000-00');
+            } else {
+                $('#lbCNPJ').text('CNPJ');
+                $('#CNPJ').mask('00.000.000/0000-00', { reverse: true });
+                $('#CNPJ').attr('placeholder', '00.000.000/0000-00');                
+            }  
+        };       
+    </script>
+}
+
