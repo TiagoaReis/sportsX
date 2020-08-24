@@ -9,3 +9,5 @@ Ferramentas:
   
 Itens do NuGET instalados:
   - Entity framework
+  
+<img src="/sportsX-2.png">
